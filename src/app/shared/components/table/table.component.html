@@ -1,0 +1,38 @@
+@if (isLoading) {
+<mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+}
+<table mat-table [dataSource]="dataSource">
+  @for (column of displayedColumns; track column) {
+  <ng-container [matColumnDef]="column">
+    @if (column === 'actions') {
+    <th mat-header-cell *matHeaderCellDef class="action-column"></th>
+    <td mat-cell *matCellDef="let element" class="action-column">
+      @if (showEdit) {
+      <button mat-icon-button color="primary" (click)="editElement(element)"
+        [disabled]="isLoading"><mat-icon>edit</mat-icon></button>
+      }
+      @if (showDelete) {
+      <button mat-icon-button color="warn" (click)="deleteElement(element)"
+        [disabled]="isLoading"><mat-icon>delete</mat-icon></button>
+      }
+    </td>
+    } @else {
+    <th mat-header-cell *matHeaderCellDef> {{ column | titlecase }} </th>
+    <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    }
+  </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell empty-message" [attr.colspan]="displayedColumns.length">
+      @if (isFiltering) {
+      No se ha encontrado nada con este filtro.
+      } @else {
+      No hay elementos en la tabla.
+      }
+    </td>
+  </tr>
+</table>

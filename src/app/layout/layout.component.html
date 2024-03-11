@@ -1,0 +1,27 @@
+<div class="layout-wrapper">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <h1>W2M</h1>
+      <button class="button-menu" mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  @if (layoutService.isLoading()) {
+  <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+  }
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side">
+      <mat-list *ngFor="let menuItem of menu">
+        <mat-list-item>
+          <a class="routerLink" [routerLink]="menuItem.routerLink" routerLinkActive="active">{{ menuItem.name }}</a>
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="main-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

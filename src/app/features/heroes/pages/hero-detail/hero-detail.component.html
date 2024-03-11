@@ -1,0 +1,49 @@
+@if (layoutService.isLoading()) {
+<div class="center">
+  <p class="text-loading">Obteniendo el héroe de batalla...</p>
+</div>
+} @else {
+<h2 class="no-margin-top">{{ title }}</h2>
+<form [formGroup]="formGroup" (submit)="save()" class="form-wrapper">
+  <div class="info-wrapper">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre del héroe" class="uppercase" formControlName="name" />
+      @if (formGroup.get('name')?.hasError('required')) {
+      <mat-error>El nombre del héreo es requerido</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Alineamiento</mat-label>
+      <mat-select formControlName="alignment">
+        <mat-option *ngFor="let alignment of alignments" [value]="alignment">{{ alignment }}</mat-option>
+      </mat-select>
+      @if (formGroup.get('alignment')?.hasError('required')) {
+      <mat-error>El alineamiento del héroe es requerido</mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <div formArrayName="powers" class="powers-wrapper">
+    <h5 class="no-margin-top">Poderes</h5>
+    <div *ngFor="let powerControl of powers.controls; let i = index" class="power">
+      <mat-form-field>
+        <mat-label>Poder {{ i + 1 }}</mat-label>
+        <input matInput placeholder="Poder..." [formControl]="powerControl" [id]="'power-' + i" />
+        @if (powerControl?.hasError('required')) {
+        <mat-error>El poder {{ i + 1 }} es requerido</mat-error>
+        }
+      </mat-form-field>
+      <button mat-mini-fab color="warn" type="button" (click)="deletePower(i)"><mat-icon>delete</mat-icon></button>
+    </div>
+    <div class="add-button">
+      <button mat-mini-fab color="primary" type="button" (click)="addPower()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="buttons-wrapper">
+    <button mat-raised-button type="button" (click)="back()"><mat-icon>arrow_back</mat-icon> Atrás</button>
+    <button mat-raised-button color="primary" type="submit"><mat-icon>save</mat-icon> Guardar</button>
+  </div>
+</form>
+}

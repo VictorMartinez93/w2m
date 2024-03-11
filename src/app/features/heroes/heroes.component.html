@@ -1,0 +1,17 @@
+<div class="heroes-wrapper">
+    <div class="table-caption">
+        <form [formGroup]="formGroup" class="form-field">
+            <mat-form-field class="w-full">
+                <mat-label>Buscar...</mat-label>
+                <input matInput placeholder="Nombre del héroe" class="uppercase" formControlName="search">
+            </mat-form-field>
+        </form>
+        <button mat-raised-button color="primary" routerLink="create">
+            <mat-icon>add</mat-icon>
+            Añadir héroe
+        </button>
+    </div>
+
+    <app-table [dataSource]="heroes" [isLoading]="isLoading" [displayedColumns]="displayedColumns" [showEdit]="true"
+        [showDelete]="true" (edit)="onEdit($event)" (delete)="onDelete($event)" [isFiltering]="isFiltering"></app-table>
+</div>

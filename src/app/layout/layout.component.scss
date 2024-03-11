@@ -1,0 +1,25 @@
+mat-sidenav-container {
+    height: calc(100vh - 64px);
+}
+
+mat-sidenav {
+    width: 200px;
+
+}
+
+.button-menu {
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
+
+.routerLink {
+    text-decoration: none;
+
+    &.active {
+        font-weight: bold;
+    }
+}
+
+.main-container {
+    padding: 1.5rem 2rem;
+}

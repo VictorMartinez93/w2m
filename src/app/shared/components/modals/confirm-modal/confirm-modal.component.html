@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <p *ngFor="let body of data.body">{{ body }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button *ngIf="data.cancelButton" mat-button (click)="cancel()" [color]="data.cancelColor || ''">{{ data.cancelButton
+    }}</button>
+  <button mat-button (click)="accept()" [color]="data.okColor || 'primary'">{{ data.okButton }}</button>
+</mat-dialog-actions>

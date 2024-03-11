@@ -1,0 +1,16 @@
+.heroes-wrapper {
+    position: relative;
+}
+
+.table-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+
+    .form-field {
+        width: 85%;
+    }
+
+
+}
