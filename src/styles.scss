@@ -10,6 +10,14 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.titlecase {
+    text-transform: capitalize;
+
+    &.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+        text-transform: capitalize;
+    }
+}
+
 .uppercase {
     &.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
         text-transform: uppercase;

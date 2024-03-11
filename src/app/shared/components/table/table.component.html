@@ -30,6 +30,8 @@
     <td class="mat-cell empty-message" [attr.colspan]="displayedColumns.length">
       @if (isFiltering) {
       No se ha encontrado nada con este filtro.
+      } @else if (isLoading) {
+      Cargando...
       } @else {
       No hay elementos en la tabla.
       }
